@@ -1,4 +1,4 @@
-<?php require_once('includes/read.php');
+<?php require_once('admin/scripts/config.php');
 if(isset($_GET['filter'])){
 
 	$tbl = 'tbl_movies';
@@ -17,6 +17,7 @@ if(isset($_GET['filter'])){
 	 $results = getAll('tbl_movies'); 
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,19 +33,22 @@ if(isset($_GET['filter'])){
 
 
 <ul>
-<?php
-       
-
-        while($row = $results->fetch(PDO::FETCH_ASSOC)): ?>
+<?php while($row = $results->fetch(PDO::FETCH_ASSOC)): ?>
 
 
- <!--<h2><?php echo $row['movies_title'];?></h2>-->
- <img  src="images/<?php echo $row['movies_cover'];?>" alt="<?php echo $row['movies_title'];?>"  id="imgs">
+<!--  <h2><?php echo $row['movies_title'];?></h2> -->
+
+ <img  src="images/<?php echo $row['movies_cover'];?>" 
+       alt="<?php echo $row['movies_title'];?>"  
+       id="imgs">
+
+
  <h2><?php echo $row['movies_title'];?></h2>
  <p><?php echo $row['movies_storyline'];?></p>
  <a href="details.php?id=<?php echo $row['movies_id'];?>">read more</a>
 
 <?php endwhile;?>
+
 </ul>
 
 
