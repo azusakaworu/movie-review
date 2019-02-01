@@ -1,13 +1,18 @@
 <?php require_once('scripts/config.php');
 //var_dump($_POST);
 
-if(empty($_POST['username']) || empty($_POST['password'])){
-	$message = 'missing fields';
-}else{
-	$username = $_POST['username'];
-	$password = $_POST['password'];
+if(!empty($_POST['username']) && !empty($_POST['password'])){
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		$ip = $_SERVER['REMOTE_ADDR'];
+	    $message = login($username,$password,$ip);
 
-	$message = login($username,$password);
+	
+}else{
+	if(isset($_POST['username']) ||isset($_POST['password'])){
+		$message ='fill the required fileds';
+	}
+	
 }
 
 ?>
@@ -21,7 +26,12 @@ if(empty($_POST['username']) || empty($_POST['password'])){
 	<title>Admin logoin</title>
 </head>
 <body>
-	<form action="admin_logoin.php" method="post">
+	<?php if(!empty($message)):?>
+
+	<p><?php echo $message;?></p>
+    <?php endif; ?>
+
+	<form action="admin_login.php" method="post">
 		<!-- action data去向  method post 简短URL-->
 		<label>username:
 			<input type="text" name="username" value="" required>

@@ -1,4 +1,4 @@
-<?php require_once('admin/scripts/config.php');
+<?php require_once('admin/scripts/config.php');//read.php
 
 if(isset($_GET['id'])){
 
@@ -29,9 +29,9 @@ if(isset($_GET['id'])){
    <h1>this si the movie site</h1>
 
 <div>
-	<?php while($row = $results->fetch(PDO::FETCH_ASSOC)): ?>
+	<?php while($row = $results->fetch(PDO::FETCH_ASSOC)):?>
 
-<h2><?php echo $row['movies_title'];?></h2>
+          <h2><?php echo $row['movies_title'];?></h2>
  
 <?php endwhile;?>
 </div>
